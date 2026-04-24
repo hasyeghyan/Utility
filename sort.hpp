@@ -284,7 +284,13 @@ int partition3(std::vector<int>& nums, int l, int r) {
 }
 
 int partition4(std::vector<int>& nums, int l, int r) {
-    int random = l + (rand() % (r - l));
+    // int random = l + (rand() % (r - l));
+   
+    static std::random_device rand;
+    static std::mt19937 gen(rand());
+    std::uniform_int_distribution<size_t> dist(l, r);
+
+    size_t random = dist(gen); 
 
     std::swap(nums[random], nums[r]);
     int i = l - 1;
