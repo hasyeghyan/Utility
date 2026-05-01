@@ -128,5 +128,17 @@ void nthElement(std::vector<int>& nums, int k) {
 
 }
 
+int maxSumSubarrayOfSizeK(std::vector<int>& nums, int k) {
+    int curr{};
+    for (int i{}; i < k; ++i) curr += nums[i];
+
+    int res = curr;
+    for (int i{k}; i < nums.size(); ++i) {
+        curr += nums[i] - nums[i - k];
+        res = std::max(res, curr);
+    }
+
+    return res;
+}
 
 #endif
