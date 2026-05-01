@@ -128,6 +128,21 @@ void nthElement(std::vector<int>& nums, int k) {
 
 }
 
+int longestSubarraySumK(std::vector<int>& nums, int k) {
+    std::unordered_map<int, int> map{{0, -1}};
+
+    int tmp{};
+    int max {};
+
+    for (int i{}; i < nums.size(); ++i) {
+        tmp += nums[i];
+        if (map.contains(tmp - k)) max = std::max(max, i - map[tmp - k]);
+        if (!map.contains(tmp)) map[tmp] = i;
+    }
+
+    return max;
+}
+
 int maxSumSubarrayOfSizeK(std::vector<int>& nums, int k) {
     int curr{};
     for (int i{}; i < k; ++i) curr += nums[i];
