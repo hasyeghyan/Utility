@@ -48,9 +48,7 @@ int binarySearchRecursive(const std::vector<int>& nums, int left, int right, con
     
     if (target < nums[mid]) return binarySearchRecursive(nums, left, mid - 1, target);
     if (target > nums[mid]) return binarySearchRecursive(nums, mid + 1, right, target);
-    return mid;
-     
-    return -1;
+    return mid;     
 } 
 
 int lowerBound(const std::vector<int>& nums, const int& target) {
