@@ -961,7 +961,7 @@
 // }
 
 //second
-// int knapsack(std::vector<int>& nums) {
+// int cut(std::vector<int>& nums) {
 //     int n = nums.size();
 //     std::vector<std::vector<int>> dp(n, std::vector<int>(n + 1));
     
@@ -980,7 +980,7 @@
 // }
 
 //third
-int knapsack(std::vector<int>& nums) {
+int cut(std::vector<int>& nums) {
     int n = nums.size();
     std::vector<int> dp(n + 1);
     
