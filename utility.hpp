@@ -703,7 +703,6 @@
 //     return 0;
 // }
 
-//Count subsets with sum k
 //first
 // std::vector<std::vector<int>> dp;
 
