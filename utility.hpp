@@ -703,17 +703,16 @@
 //     return 0;
 // }
 
+//Count subsets with sum k
 //first
 // std::vector<std::vector<int>> dp;
 
-// int count(std::vector<int>& nums) {
-//     int total = accumulate(nums.begin(), nums.end(), 0);   
+// int count(std::vector<int>& nums, int k) {  
 
 //     int n = nums.size();
-//     int t = total / 2;
-//     dp.assign(n, std::vector<int>(t + 1, -1));
+//     dp.assign(n, std::vector<int>(k + 1, -1));
 
-//     return solve(n - 1, t, nums);
+//     return solve(n - 1, k, nums);
 // }
 
 // int solve(int i, int t, std::vector<int>& nums) {
@@ -725,11 +724,8 @@
 // }
 
 // //second
-// int count(std::vector<int>& nums) {
-//     int total = std::accumulate(nums.begin(), nums.end(), 0);   
-
+// int count(std::vector<int>& nums, int t) {
 //     int n = nums.size();
-//     int t = total / 2;
 //     std::vector<std::vector<int>> dp(n, std::vector<int>(t + 1));
 
 //     dp[0][0] = 1;
@@ -748,11 +744,9 @@
 // }
 
 // //third
-// int partition(std::vector<int>& nums) {
-//     int total = std::accumulate(nums.begin(), nums.end(), 0);   
+// int partition(std::vector<int>& nums, int t) {
 
 //     int n = nums.size();
-//     int t = total / 2;
     
 //     std::vector<int> dp(t + 1);
 //     dp[0] = 1;
