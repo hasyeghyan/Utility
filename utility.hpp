@@ -875,65 +875,6 @@
 //     return dp[cap];
 // }
 
-//LCS(longest common subsequence)
-//first
-
-// std::vector<std::vector<int>> dp;
-
-// int solve(std::string& s1, std::string& s2, int i, int j) {
-//     if (i < 0 || j < 0) return 0;
-
-//     if (dp[i][j] != -1) return dp[i][j];
-
-//     if (s1[i] == s2[j]) return dp[i][j] = 1 + solve(s1, s2, i - 1, j - 1);
-//     return dp[i][j] = std::max(solve(s1, s2, i - 1, j), solve(s1, s2, i, j - 1));
-// }
-
-// int lcs(std::string& s1, std::string& s2) {
-//     int n = s1.size();
-//     int m = s2.size();
-//     dp.assign(n, std::vector<int>(m,-1));
-
-//     return solve(s1, s2, n - 1, m - 1);
-// }
-
-//second
-// int lcs(std::string& s1, std::string& s2) {
-//     int n = s1.size();
-//     int m = s2.size();
-//     std::vector<std::vector<int>> dp(n + 1, std::vector<int>(m + 1));
-    
-//     for (int i{1}; i <= n; ++i) {
-//         for (int j{1}; j <= m; ++j) {
-//             if (s1[i - 1] ==  s2[j - 1]) dp[i][j] = 1 + dp[i - 1][j - 1];
-//             else dp[i][j] = std::max(dp[i - 1][j], dp[i][j - 1]);
-//         }
-//     }
-   
-//     return dp[n][m];
-// }
-
-//third
-// int lcs(std::string& s1, std::string& s2) {
-//     int n = s1.size();
-//     int m = s2.size();
-//     std::vector<int> dp(m + 1);
-    
-//     for (int i{1}; i <= n; ++i) {
-//         int prev_diag{};
-//         for (int j{1}; j <= m; ++j) {
-//             int tmp = dp[j];
-
-//             if (s1[i - 1] ==  s2[j - 1]) dp[j] = 1 + prev_diag;
-//             else dp[j] = std::max(dp[j - 1], dp[j]);
-
-//             prev_diag =  tmp;
-//         }
-//     }
-   
-//     return dp[m];
-// }
-
 //Rod Cutting
 //first
 
@@ -973,20 +914,93 @@
 // }
 
 //third
-int cut(std::vector<int>& nums) {
-    int n = nums.size();
-    std::vector<int> dp(n + 1);
+// int cut(std::vector<int>& nums) {
+//     int n = nums.size();
+//     std::vector<int> dp(n + 1);
     
-    for (int i{}; i < n; ++i) {
-        for (int j{i + 1}; j <= n; ++j) {
-            int not_cut = dp[j];
-            int cut = nums[i] +  dp[j - i - 1];
+//     for (int i{}; i < n; ++i) {
+//         for (int j{i + 1}; j <= n; ++j) {
+//             int not_cut = dp[j];
+//             int cut = nums[i] +  dp[j - i - 1];
 
-            dp[j] = std::max(not_cut, cut);
-        }
-    }
+//             dp[j] = std::max(not_cut, cut);
+//         }
+//     }
    
-    return dp[n];
-}
+//     return dp[n];
+// }
+
+
+//Longest Common Subsequence(the subsequence not length)
+
+//first
+// std::vector<std::vector<int>> dp;
+
+// std::string longestCommonSubsequence(std::string text1, std::string text2) {
+//     int n = text1.size();
+//     int m =  text2.size();
+        
+//     dp.assign(n, std::vector<int>(m, -1));
+//     foo(text1, text2, n - 1, m - 1);
+    
+    // std::string res;
+    // int i = n - 1;
+    // int j = m - 1;
+    // while (i >= 0 && j >= 0) {
+    //     if (text1[i] == text2[j]) {
+    //         res += text1[i];
+    //         --i;
+    //         --j;
+    //     }
+    //     else {
+    //         int tmp1 = i >= 1 ? dp[i - 1][j] : 0;
+    //         int tmp2 = j >= 1 ? dp[i][j - 1] : 0;
+        
+    //         if (tmp1 >= tmp2) --i;
+    //         else --j;
+    //     }
+    // }
+    // std::reverse(res.begin(), res.end());
+    // return res;
+// }
+
+// int foo (std::string& text1, std::string& text2, int i, int j) {
+//     if (i < 0 || j < 0) return 0;
+//     if (dp[i][j] != -1) return dp[i][j];
+
+//     if (text1[i] == text2[j]) return dp[i][j] = 1 + foo(text1, text2, i - 1, j - 1);
+//     return dp[i][j] = std::max(foo(text1, text2, i - 1, j), foo(text1, text2, i, j - 1));
+// }
+
+//second
+// std::string longestCommonSubsequence(std::string text1, std::string text2) {
+//     int n = text1.size();
+//     int m = text2.size();
+//     std::vector<std::vector<int>> dp(n + 1, std::vector<int>(m + 1));
+        
+//     for (int i{1}; i <= n; ++i) {
+//         for (int j{1}; j <= m; ++j) {
+//             if (text1[i - 1] == text2[j - 1]) dp[i][j] = 1 + dp[i - 1][j - 1];
+//             else dp[i][j] = std::max(dp[i - 1][j], dp[i][j - 1]);
+//         }
+//     }
+
+//     std::string res;
+//     int i = n;
+//     int j = m;
+//     while (i >= 1 && j >= 1) {
+//         if (text1[i - 1] == text2[j - 1]) {
+//             res += text1[i - 1];
+//             --i;
+//             --j;
+//         }
+//         else {
+//             if (dp[i - 1][j] >= dp[i][j - 1]) --i;
+//             else --j;
+//         }
+//     }
+//     std::reverse(res.begin(), res.end());
+//     return res;
+// }
 
 #endif
