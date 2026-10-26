@@ -1003,4 +1003,35 @@
 //     return res;
 // }
 
+//Fractional knapsack
+bool compare(const std::pair<int, int>& p1, const std::pair<int, int>& p2) {
+    double tmp1 = (double)p1.second / p1.first;
+    double tmp2 = (double)p2.second / p2.first;
+
+    return tmp1 > tmp2;
+}
+
+double knapsack(std::vector<int>& wt, std::vector<int>& val, int capacity) {
+    int n = wt.size();
+    std::vector<std::pair<int, int>> ratio(n);
+    
+    for (int i{}; i < n; ++i) {
+        ratio[i].first = wt[i];
+        ratio[i].second = val[i];
+    } 
+    std::sort(ratio.begin(), ratio.end(), compare);
+
+    double res{};
+    for (auto [w, v] : ratio) {
+        if (capacity >= w) {
+            res += v;
+            capacity -= w;
+        } else {
+            res += capacity * ((double)v / w);
+            break;
+        }
+    }
+    return res;
+}
+
 #endif
